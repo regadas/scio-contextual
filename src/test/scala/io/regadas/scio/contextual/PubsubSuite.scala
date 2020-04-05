@@ -5,7 +5,7 @@ import io.regadas.scio.contextual.pubsub._
 class PubsubSuite extends munit.FunSuite {
 
   test("valid topic") {
-    topic"projects/projectId/topics/topicName"
+    topic"projects/project-id/topics/topicName"
   }
 
   test("invalid topic") {
@@ -19,7 +19,7 @@ class PubsubSuite extends munit.FunSuite {
   }
 
   test("valid subscription") {
-    subscription"projects/projectId/subscriptions/subName"
+    subscription"projects/project-id/subscriptions/subName"
   }
 
   test("invalid subscription") {

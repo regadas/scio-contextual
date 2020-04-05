@@ -21,18 +21,18 @@ object pubsub {
     "projects/([^/]+)/(topics|subscriptions)/(.+)".r
 
   def validateProjectId(name: String): Either[String, String] =
-    if (ProjectIdRegExp.findAllIn(name).isEmpty) {
-      Left(s"Illegal project name: needs to be ${ProjectIdRegExp.regex}")
-    } else {
-      Right(name)
-    }
+    Either.cond(
+      name.matches(ProjectIdRegExp.regex),
+      name,
+      s"Illegal project name: needs to be $ProjectIdRegExp"
+    )
 
   def validatePubSubName(name: String): Either[String, String] =
-    if (PubSubNameRegExp.findAllIn(name).isEmpty) {
-      Left(s"Invalid Pubsub name: name needs to be ${PubSubNameRegExp.regex}")
-    } else {
-      Right(name)
-    }
+    Either.cond(
+      name.matches(PubSubNameRegExp.regex),
+      name,
+      s"Invalid Pubsub name: name needs to be $PubSubNameRegExp"
+    )
 
   def validate(name: String, tpe: String): Either[String, String] = {
     val parsed = name match {
