@@ -66,7 +66,7 @@ object bigquery {
     }
   }
 
-  implicit class BifQueryContext(sc: StringContext) {
+  implicit class BigQueryContext(sc: StringContext) {
     val ref = Prefix(TableRefParser, sc)
     val spec = Prefix(TableSpecParser, sc)
   }
