@@ -12,7 +12,7 @@ libraryDependencies ++= Seq(
 )
 ```
 
-## BigQuery
+## Google BigQuery
 
 ```scala
 import io.regadas.scio.contextual.bigquery._
@@ -48,7 +48,7 @@ spec"proj:datasetid.tableid"
 //      ^^^^^^^^^^^^^^^^^^^^^^^
 ```
 
-## Pubsub
+## Google Cloud Pub/Sub
 
 ```scala
 import io.regadas.scio.contextual.pubsub._
@@ -57,11 +57,11 @@ import io.regadas.scio.contextual.pubsub._
 ### Valid
 
 ```scala
-subscription"projects/projectId/subscriptions/subName"
-// res3: String = "projects/projectId/subscriptions/subName"
+subscription"projects/project-id/subscriptions/subName"
+// res3: String = "projects/project-id/subscriptions/subName"
 
-topic"projects/projectId/topics/name"
-// res4: String = "projects/projectId/topics/name"
+topic"projects/project-id/topics/name"
+// res4: String = "projects/project-id/topics/name"
 ```
 
 ### Invalid
@@ -78,4 +78,38 @@ topic"projects/proj/topics/name"
 // error: Illegal project name: needs to be [a-z][-a-z0-9:.]{4,61}[a-z0-9]
 // topic"projects/proj/topics/name"
 //       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
+
+## Google Cloud Storage
+
+```scala
+import io.regadas.scio.contextual.gcs._
+```
+
+### Valid
+
+```scala
+gcs"gs://bucket/scio-contextual"
+// res6: String = "gs://bucket/scio-contextual"
+```
+
+### Invalid
+
+```scala
+// invalid bucket
+gcs"gs://bucket_/scio-contextual"
+
+gcs"gs://bu/scio-contextual"
+
+// wrong schema
+gcs"gcs://bucket/scio-contextual"
+// error: invalid uri format: gs://[a-z0-9][-_a-z0-9.]+[a-z0-9](/.*)?
+// gcs"gs://bucket_/scio-contextual"
+//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// error: invalid uri format: gs://[a-z0-9][-_a-z0-9.]+[a-z0-9](/.*)?
+// gcs"gs://bu/scio-contextual"
+//     ^^^^^^^^^^^^^^^^^^^^^^^^
+// error: invalid uri format: gs://[a-z0-9][-_a-z0-9.]+[a-z0-9](/.*)?
+// gcs"gcs://bucket/scio-contextual"
+//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ```
