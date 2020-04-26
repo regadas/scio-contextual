@@ -12,6 +12,14 @@ libraryDependencies ++= Seq(
 )
 ```
 
+## Compatibility table
+
+| scio-contextual | scio  |
+|-----------------|-------|
+| 0.1.1           | 0.8.3 |
+| 0.1.0           | 0.8.3 |
+
+
 ## Google BigQuery
 
 ```scala
