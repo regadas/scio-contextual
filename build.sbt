@@ -1,6 +1,6 @@
 import Dependencies._
 
-ThisBuild / scalaVersion := "2.13.2"
+ThisBuild / scalaVersion := "2.12.11"
 ThisBuild / organization := "io.regadas"
 ThisBuild / organizationName := "regadas"
 ThisBuild / licenses := Seq(
@@ -39,7 +39,26 @@ lazy val `scio-contextual` = project
   .in(file("."))
   .settings(
     name := "scio-contextual",
-    crossScalaVersions := Seq("2.12.11", scalaVersion.value),
+    scalacOptions ++= Seq(
+      "-encoding",
+      "UTF-8",
+      "-feature",
+      "-explaintypes",
+      "-unchecked",
+      "-Ywarn-dead-code",
+      "-Ywarn-value-discard",
+      "-Ywarn-unused",
+      "-Xfatal-warnings",
+      "-deprecation",
+      "-Xlint"
+    ) ++ {
+      if (scalaVersion.value.startsWith("2.12")) {
+        Seq("-Ypartial-unification")
+      } else {
+        Nil
+      }
+    },
+    // crossScalaVersions := Seq("2.12.11", scalaVersion.value),
     libraryDependencies ++= Seq(
       Contextual,
       ScioBigQuery,

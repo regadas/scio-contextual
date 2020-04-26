@@ -42,7 +42,7 @@ jobs:
     strategy:
       matrix:
         java: ["8.0.232", "11.0.5"]
-        scala: ["2.12.11", "2.13.2"]
+        scala: ["2.12.11"]
     steps:
       - uses: actions/checkout@master
       - name: generate cache key
