@@ -1,14 +1,6 @@
 package io.regadas.scio.contextual
 
 import contextual._
-import scala.util.matching._
-import com.spotify.scio.bigquery.Source
-import com.spotify.scio.bigquery.Table
-import scala.util.Try
-import com.google.api.client.json.JsonObjectParser
-import com.google.api.client.json.jackson2.JacksonFactory
-import java.io.StringReader
-import com.google.api.services.bigquery.model.TableReference
 
 object pubsub {
   private[this] val ProjectIdRegExp =
@@ -48,8 +40,8 @@ object pubsub {
 
     for {
       p <- parsed
-      pn <- validateProjectId(p._1)
-      tn <- validatePubSubName(p._2)
+      _ <- validateProjectId(p._1)
+      _ <- validatePubSubName(p._2)
     } yield name
   }
 

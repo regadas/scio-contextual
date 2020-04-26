@@ -1,15 +1,12 @@
 package io.regadas.scio.contextual
 
 import contextual._
-import scala.util.matching._
-import com.spotify.scio.bigquery.Source
 import com.spotify.scio.bigquery.Table
 import scala.util.Try
 import com.google.api.client.json.JsonObjectParser
 import com.google.api.client.json.jackson2.JacksonFactory
 import java.io.StringReader
 import com.google.api.services.bigquery.model.TableReference
-import scala.annotation.compileTimeOnly
 
 object bigquery {
   object TableSpecParser extends Interpolator {
