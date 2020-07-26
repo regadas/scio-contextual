@@ -36,22 +36,21 @@ object bigquery {
       Try {
         Parser.parseAndClose(new StringReader(ref), classOf[TableReference])
       }.map { tr =>
-          if (tr.getProjectId() == null) {
-            interpolation.abort(lit, 0, "project id is null")
-          }
-          if (tr.getDatasetId() == null) {
-            interpolation.abort(lit, 0, "dataset id is null")
-          }
-          if (tr.getTableId() == null) {
-            interpolation.abort(lit, 0, "table id is null")
-          }
-
-          Table.Spec(Table.Ref(tr).spec).ref
+        if (tr.getProjectId() == null) {
+          interpolation.abort(lit, 0, "project id is null")
         }
-        .fold(
-          t => interpolation.abort(lit, 0, s"invalid json: ${t.getMessage}"),
-          _ => Nil
-        )
+        if (tr.getDatasetId() == null) {
+          interpolation.abort(lit, 0, "dataset id is null")
+        }
+        if (tr.getTableId() == null) {
+          interpolation.abort(lit, 0, "table id is null")
+        }
+
+        Table.Spec(Table.Ref(tr).spec).ref
+      }.fold(
+        t => interpolation.abort(lit, 0, s"invalid json: ${t.getMessage}"),
+        _ => Nil
+      )
     }
 
     def evaluate(interpolation: RuntimeInterpolation): Table.Ref = {
