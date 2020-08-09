@@ -118,7 +118,7 @@ jobs:
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
           PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
       - if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-        run: sbt +publishSigned sonatypeBundleRelease ghpagesPushSite
+        run: sbt +publishSigned sonatypeBundleRelease
         env:
           SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
