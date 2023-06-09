@@ -1,6 +1,6 @@
 import Dependencies._
 
-ThisBuild / scalaVersion := "2.12.11"
+ThisBuild / scalaVersion := "2.12.18"
 ThisBuild / organization := "io.regadas"
 ThisBuild / organizationName := "regadas"
 ThisBuild / licenses := Seq(
@@ -58,7 +58,7 @@ lazy val `scio-contextual` = project
         Nil
       }
     },
-    // crossScalaVersions := Seq("2.12.11", scalaVersion.value),
+    // crossScalaVersions := Seq("2.12.18", scalaVersion.value),
     libraryDependencies ++= Seq(
       Contextual,
       ScioBigQuery,
